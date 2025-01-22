@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "K+NHI6odw9c=",
+  "success": true,
+  "projectFilePath": "/home/muaaz/Projects/dist-manage/dist-manage.csproj",
+  "expectedPackageFiles": [
+    "/home/muaaz/.nuget/packages/microsoft.aspnetcore.openapi/9.0.1/microsoft.aspnetcore.openapi.9.0.1.nupkg.sha512",
+    "/home/muaaz/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
