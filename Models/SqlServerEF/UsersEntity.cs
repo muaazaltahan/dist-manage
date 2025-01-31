@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class UsersEntity : IDataHelper<Users>
+    public class UsersEntity : IDataHelper<UsersDB>
     {
         private DBContext db;
-        private Users _table;
+        private UsersDB _table;
         public UsersEntity()
         {
             db = new DBContext();
         }
-        public int Add(Users table)
+        public int Add(UsersDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Users.Add(table);
+                db.UsersDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Users.Remove(_table);
+                db.UsersDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Users table)
+        public int Edit(int Id, UsersDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Users.Update(table);
+                db.UsersDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Users Find(int Id)
+        public UsersDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Users.Where(x => x.Id == Id).First();
+                return db.UsersDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Users> GetAllData()
+        public List<UsersDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Users.ToList();
+                return db.UsersDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Users> GetDataByUser(string UserId)
+        public List<UsersDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Users> Search(string SerachItem)
+        public List<UsersDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Users.Where(x => x.Name.Contains(SerachItem)
+                return db.UsersDB.Where(x => x.Name.Contains(SerachItem)
                 || x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }

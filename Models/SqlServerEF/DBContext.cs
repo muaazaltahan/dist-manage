@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
@@ -13,14 +13,14 @@ namespace dist_manage.Models.SqlServerEF
             optionsBuilder.UseSqlServer(@"Server=.//SQLServer;Database=dist_manageDB;Trusted_Connection=true");
         }
         
-        public DbSet<Cards> Cards { get; set; }
-        public DbSet<Link_Prog_Card> Link_Prog_Card { get; set; }
-        public DbSet<Link_Prog_User> Link_Prog_User { get; set; }
-        public DbSet<Logs> Logs { get; set; }
-        public DbSet<Programs> Programs { get; set; }
-        public DbSet<Request> Request { get; set; }
-        public DbSet<Sections> Sections { get; set; }
-        public DbSet<SectionUsers> SectionUsers { get; set; }
-        public DbSet<Users> Users { get; set; }
+        public DbSet<CardsDB> CardsDB { get; set; }
+        public DbSet<Link_Prog_CardDB> Link_Prog_CardDB { get; set; }
+        public DbSet<Link_Prog_UserDB> Link_Prog_UserDB { get; set; }
+        public DbSet<LogsDB> LogsDB { get; set; }
+        public DbSet<ProgramsDB> ProgramsDB { get; set; }
+        public DbSet<RequestDB> RequestDB { get; set; }
+        public DbSet<SectionsDB> SectionsDB { get; set; }
+        public DbSet<SectionUsersDB> SectionUsersDB { get; set; }
+        public DbSet<UsersDB> UsersDB { get; set; }
     }
 }

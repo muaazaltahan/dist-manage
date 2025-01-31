@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class CardsEntity : IDataHelper<Cards>
+    public class CardsEntity : IDataHelper<CardsDB>
     {
         private DBContext db;
-        private Cards _table;
+        private CardsDB _table;
         public CardsEntity()
         {
             db = new DBContext();
         }
-        public int Add(Cards table)
+        public int Add(CardsDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Cards.Add(table);
+                db.CardsDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Cards.Remove(_table);
+                db.CardsDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Cards table)
+        public int Edit(int Id, CardsDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Cards.Update(table);
+                db.CardsDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Cards Find(int Id)
+        public CardsDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Cards.Where(x => x.Id == Id).First();
+                return db.CardsDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Cards> GetAllData()
+        public List<CardsDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Cards.ToList();
+                return db.CardsDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Cards> GetDataByUser(string UserId)
+        public List<CardsDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Cards> Search(string SerachItem)
+        public List<CardsDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Cards.Where(
+                return db.CardsDB.Where(
                    x =>  x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }
