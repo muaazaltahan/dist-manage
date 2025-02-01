@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class Link_Prog_CardEntity : IDataHelper<Link_Prog_Card>
+    public class Link_Prog_CardEntity : IDataHelper<Link_Prog_CardDB>
     {
         private DBContext db;
-        private Link_Prog_Card _table;
+        private Link_Prog_CardDB _table;
         public Link_Prog_CardEntity()
         {
             db = new DBContext();
         }
-        public int Add(Link_Prog_Card table)
+        public int Add(Link_Prog_CardDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Link_Prog_Card.Add(table);
+                db.Link_Prog_CardDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Link_Prog_Card.Remove(_table);
+                db.Link_Prog_CardDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Link_Prog_Card table)
+        public int Edit(int Id, Link_Prog_CardDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Link_Prog_Card.Update(table);
+                db.Link_Prog_CardDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Link_Prog_Card Find(int Id)
+        public Link_Prog_CardDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Link_Prog_Card.Where(x => x.Id == Id).First();
+                return db.Link_Prog_CardDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Link_Prog_Card> GetAllData()
+        public List<Link_Prog_CardDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Link_Prog_Card.ToList();
+                return db.Link_Prog_CardDB.ToList();
             }
             else
             {
@@ -83,11 +83,11 @@ namespace dist_manage.Models.SqlServerEF
         }
 
 
-        public List<Link_Prog_Card> Search(string SerachItem)
+        public List<Link_Prog_CardDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Link_Prog_Card.Where(x =>
+                return db.Link_Prog_CardDB.Where(x =>
                 x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }

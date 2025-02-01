@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dist_managet.DB
+namespace dist_manage.DB
 {
     public class Cards
     {

@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class ProgramsEntity : IDataHelper<Programs>
+    public class ProgramsEntity : IDataHelper<ProgramsDB>
     {
         private DBContext db;
-        private Programs _table;
+        private ProgramsDB _table;
         public ProgramsEntity()
         {
             db = new DBContext();
         }
-        public int Add(Programs table)
+        public int Add(ProgramsDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Programs.Add(table);
+                db.ProgramsDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Programs.Remove(_table);
+                db.ProgramsDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Programs table)
+        public int Edit(int Id, ProgramsDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Programs.Update(table);
+                db.ProgramsDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Programs Find(int Id)
+        public ProgramsDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Programs.Where(x => x.Id == Id).First();
+                return db.ProgramsDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Programs> GetAllData()
+        public List<ProgramsDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Programs.ToList();
+                return db.ProgramsDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Programs> GetDataByUser(string UserId)
+        public List<ProgramsDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Programs> Search(string SerachItem)
+        public List<ProgramsDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Programs.Where(x => x.Name.Contains(SerachItem)
+                return db.ProgramsDB.Where(x => x.Name.Contains(SerachItem)
                 || x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }

@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class Link_Prog_UserEntity : IDataHelper<Link_Prog_User>
+    public class Link_Prog_UserEntity : IDataHelper<Link_Prog_UserDB>
     {
         private DBContext db;
-        private Link_Prog_User _table;
+        private Link_Prog_UserDB _table;
         public Link_Prog_UserEntity()
         {
             db = new DBContext();
         }
-        public int Add(Link_Prog_User table)
+        public int Add(Link_Prog_UserDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Link_Prog_User.Add(table);
+                db.Link_Prog_UserDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Link_Prog_User.Remove(_table);
+                db.Link_Prog_UserDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Link_Prog_User table)
+        public int Edit(int Id, Link_Prog_UserDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Link_Prog_User.Update(table);
+                db.Link_Prog_UserDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Link_Prog_User Find(int Id)
+        public Link_Prog_UserDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Link_Prog_User.Where(x => x.Id == Id).First();
+                return db.Link_Prog_UserDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Link_Prog_User> GetAllData()
+        public List<Link_Prog_UserDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Link_Prog_User.ToList();
+                return db.Link_Prog_UserDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Link_Prog_User> GetDataByUser(string UserId)
+        public List<Link_Prog_UserDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Link_Prog_User> Search(string SerachItem)
+        public List<Link_Prog_UserDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Link_Prog_User.Where(x => 
+                return db.Link_Prog_UserDB.Where(x => 
                  x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }

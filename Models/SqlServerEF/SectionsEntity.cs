@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class SectionsEntity : IDataHelper<Sections>
+    public class SectionsEntity : IDataHelper<SectionsDB>
     {
         private DBContext db;
-        private Sections _table;
+        private SectionsDB _table;
         public SectionsEntity()
         {
             db = new DBContext();
         }
-        public int Add(Sections table)
+        public int Add(SectionsDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Sections.Add(table);
+                db.SectionsDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Sections.Remove(_table);
+                db.SectionsDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Sections table)
+        public int Edit(int Id, SectionsDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Sections.Update(table);
+                db.SectionsDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Sections Find(int Id)
+        public SectionsDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Sections.Where(x => x.Id == Id).First();
+                return db.SectionsDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Sections> GetAllData()
+        public List<SectionsDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Sections.ToList();
+                return db.SectionsDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Sections> GetDataByUser(string UserId)
+        public List<SectionsDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Sections> Search(string SerachItem)
+        public List<SectionsDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Sections.Where(x => x.SectionName.Contains(SerachItem)
+                return db.SectionsDB.Where(x => x.SectionName.Contains(SerachItem)
                 || x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }

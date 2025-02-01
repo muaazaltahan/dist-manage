@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class LogsEntity : IDataHelper<Logs>
+    public class LogsEntity : IDataHelper<LogsDB>
     {
         private DBContext db;
-        private Logs _table;
+        private LogsDB _table;
         public LogsEntity()
         {
             db = new DBContext();
         }
-        public int Add(Logs table)
+        public int Add(LogsDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Logs.Add(table);
+                db.LogsDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Logs.Remove(_table);
+                db.LogsDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Logs table)
+        public int Edit(int Id, LogsDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Logs.Update(table);
+                db.LogsDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Logs Find(int Id)
+        public LogsDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Logs.Where(x => x.Id == Id).First();
+                return db.LogsDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Logs> GetAllData()
+        public List<LogsDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Logs.ToList();
+                return db.LogsDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Logs> GetDataByUser(string UserId)
+        public List<LogsDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Logs> Search(string SerachItem)
+        public List<LogsDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Logs.Where(x => x.Notes.Contains(SerachItem)
+                return db.LogsDB.Where(x => x.Notes.Contains(SerachItem)
                 || x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }

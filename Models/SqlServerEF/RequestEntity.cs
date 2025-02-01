@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dist_managet.DB;
+using dist_manage.DB;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class RequestEntity : IDataHelper<Request>
+    public class RequestEntity : IDataHelper<RequestDB>
     {
         private DBContext db;
-        private Request _table;
+        private RequestDB _table;
         public RequestEntity()
         {
             db = new DBContext();
         }
-        public int Add(Request table)
+        public int Add(RequestDB table)
         {
             if (db.Database.CanConnect())
             {
-                db.Request.Add(table);
+                db.RequestDB.Add(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -33,7 +33,7 @@ namespace dist_manage.Models.SqlServerEF
             if (db.Database.CanConnect())
             {
                 _table = Find(Id);
-                db.Request.Remove(_table);
+                db.RequestDB.Remove(_table);
                 db.SaveChanges();
                 return 1;
             }
@@ -43,12 +43,12 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, Request table)
+        public int Edit(int Id, RequestDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
             {
-                db.Request.Update(table);
+                db.RequestDB.Update(table);
                 db.SaveChanges();
                 return 1;
             }
@@ -58,11 +58,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public Request Find(int Id)
+        public RequestDB Find(int Id)
         {
             if (db.Database.CanConnect())
             {
-                return db.Request.Where(x => x.Id == Id).First();
+                return db.RequestDB.Where(x => x.Id == Id).First();
             }
             else
             {
@@ -70,11 +70,11 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Request> GetAllData()
+        public List<RequestDB> GetAllData()
         {
             if (db.Database.CanConnect())
             {
-                return db.Request.ToList();
+                return db.RequestDB.ToList();
             }
             else
             {
@@ -82,16 +82,16 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public List<Request> GetDataByUser(string UserId)
+        public List<RequestDB> GetDataByUser(string UserId)
         {
             throw new NotImplementedException();
         }
 
-        public List<Request> Search(string SerachItem)
+        public List<RequestDB> Search(string SerachItem)
         {
             if (db.Database.CanConnect())
             {
-                return db.Request.Where(x => x.Notes.Contains(SerachItem)
+                return db.RequestDB.Where(x => x.Notes.Contains(SerachItem)
                 || x.Id.ToString().Contains(SerachItem))
                 .ToList();
             }
