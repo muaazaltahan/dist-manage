@@ -27,30 +27,25 @@ namespace dist_manage.Controllers
             return Ok(data);
         }
 
-        // GET: SectionUsersController/Add/5
+        // GET: SectionUsersController/Add
         [HttpGet]
         public ActionResult Add()
         {
             return Ok();
         }
 
-        // POST: SectionUsersController/Add/5
+        // POST: SectionUsersController/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(SectionUsersDB collection)
+        public ActionResult Add(List<SectionUsersDB> collection)
         {
             try
             {
-                var result = dataHelper.Add(collection);
-                if (result == 1)
+                foreach (var item in collection)
                 {
-                    return RedirectToAction(nameof(Index));
-
+                    dataHelper.Add(item);
                 }
-                else
-                {
-                    return Ok();
-                }
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
