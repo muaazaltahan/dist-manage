@@ -27,30 +27,25 @@ namespace dist_manage.Controllers
             return Ok(data);
         }
 
-        // GET: Link_Prog_UserController/Add/5
+        // GET: Link_Prog_UserController/Add
         [HttpGet]
         public ActionResult Add()
         {
             return Ok();
         }
 
-        // POST: Link_Prog_UserController/Add/5
+        // POST: Link_Prog_UserController/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Link_Prog_UserDB collection)
+        public ActionResult Add(List<Link_Prog_UserDB> collection)
         {
             try
             {
-                var result = dataHelper.Add(collection);
-                if (result == 1)
+                foreach (var item in collection)
                 {
-                    return RedirectToAction(nameof(Index));
-
+                    dataHelper.Add(item);
                 }
-                else
-                {
-                    return Ok();
-                }
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

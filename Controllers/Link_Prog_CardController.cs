@@ -37,20 +37,16 @@ namespace dist_manage.Controllers
         // POST: Link_Prog_CardController/Add/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Link_Prog_CardDB collection)
+        public ActionResult Add(List<Link_Prog_CardDB> collection)
         {
             try
             {
-                var result = dataHelper.Add(collection);
-                if (result == 1)
+                foreach (var item in collection)
                 {
-                    return RedirectToAction(nameof(Index));
+                    dataHelper.Add(item);
+                }
 
-                }
-                else
-                {
-                    return Ok();
-                }
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
