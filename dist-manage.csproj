@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>dist_manage</RootNamespace>
+    <UserSecretsId>9b284ae7-2800-4aec-bcea-8a7db318d074</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="ClientApp\" />
   </ItemGroup>
 
 </Project>
