@@ -28,14 +28,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: ProgramsController/Add/5
-        [HttpGet]
+        [HttpGet("Add")]
         public ActionResult Add()
         {
             return Ok();
         }
 
         // POST: ProgramsController/Add/5
-        [HttpPost]
+        [HttpPost("Add")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(ProgramsDB collection)
         {
@@ -59,14 +59,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: ProgramsController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{id}")]
         public ActionResult Edit(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
         // POST: ProgramsController/Edit/5
-        [HttpPost]
+        [HttpPut("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ProgramsDB collection)
         {
@@ -90,14 +90,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: ProgramsController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id}")]
         public ActionResult Delete(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
-        // POST: ProgramsController/Edit/5
-        [HttpPost]
+        // POST: ProgramsController/Delete/5
+        [HttpDelete("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, ProgramsDB collection)
         {

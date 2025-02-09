@@ -28,14 +28,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: Link_Prog_CardController/Add/5
-        [HttpGet]
+        [HttpGet("Add")]
         public ActionResult Add()
         {
             return Ok();
         }
 
         // POST: Link_Prog_CardController/Add/5
-        [HttpPost]
+        [HttpPost("Add")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(List<Link_Prog_CardDB> collection)
         {
@@ -55,14 +55,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: Link_Prog_CardController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{id}")]
         public ActionResult Edit(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
         // POST: Link_Prog_CardController/Edit/5
-        [HttpPost]
+        [HttpPut("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Link_Prog_CardDB collection)
         {
@@ -86,14 +86,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: Link_Prog_CardController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id}")]
         public ActionResult Delete(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
         // POST: Link_Prog_CardController/Edit/5
-        [HttpPost]
+        [HttpDelete("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Link_Prog_CardDB collection)
         {
