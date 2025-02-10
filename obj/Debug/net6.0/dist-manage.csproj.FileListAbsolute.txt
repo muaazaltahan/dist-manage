@@ -772,3 +772,4 @@ C:\Users\ASUS\source\repos\dist-manage\obj\Debug\net6.0\refint\dist-manage.dll
 C:\Users\ASUS\source\repos\dist-manage\obj\Debug\net6.0\dist-manage.pdb
 C:\Users\ASUS\source\repos\dist-manage\obj\Debug\net6.0\dist-manage.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\dist-manage\obj\Debug\net6.0\ref\dist-manage.dll
+C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\dist-manage.staticwebassets.runtime.json

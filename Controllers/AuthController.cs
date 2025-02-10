@@ -18,7 +18,7 @@ namespace dist_manage.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<Users>> Login([FromBody] LoginReqCmd data)
+        public async Task<ActionResult<LoginResCmd>> Login([FromBody] LoginReqCmd data)
         {
             try
             {

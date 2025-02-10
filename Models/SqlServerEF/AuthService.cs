@@ -24,7 +24,7 @@ namespace dist_manage.Models.SqlServerEF
             _jwt = configuration["Secrets:jwt"];
         }
 
-        public async Task<Users> Login(LoginReqCmd data)
+        public async Task<LoginResCmd> Login(LoginReqCmd data)
         {
             var user = context.UsersDB.FirstOrDefault(x => x.Name == data.Username);
             string passHash = ComputeHash(data.Password, _pepper, iteration);

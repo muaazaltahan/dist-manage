@@ -1,6 +1,8 @@
 const API = 'http://localhost:3090';
 const user = JSON.parse(localStorage.getItem('_u')).token;
 
+if(!user || !user.token) location.pathname = "/login"
+
 function get(endpoint, params) {
     let url = endpoint + "?" + params.join("&");
     let value = fetch(url, {
@@ -39,7 +41,9 @@ function fillProgramsTable(value) {
     </tr>`;
     tableBody?.innerHTML += html;
     });
-    tableBody?.querySelectorAll('');
+    tableBody?.querySelectorAll('el-edit').forEach(el => {
+        el.addEventListener('click',() => location.pathname = "/edit-program.html?id=" + el.getAttribute("data-id"));
+    });
 }
 
 function getPrograms() {
