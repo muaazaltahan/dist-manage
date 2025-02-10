@@ -28,14 +28,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: CardsController/Add
-        //[HttpGet]
-        //public ActionResult Add()
-        //{
-        //    return Ok();
-        //}
+        [HttpGet("Add")]
+        public ActionResult Add()
+        {
+            return Ok();
+        }
 
         // POST: CardsController/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(CardsDB collection)
         {
@@ -59,16 +59,16 @@ namespace dist_manage.Controllers
         }
 
         // GET: CardsController/Edit/5
-        [HttpGet("{id}")]
-        public ActionResult GetById(int id)
+        [HttpGet("Edit/{id}")]
+        public ActionResult Edit(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
         // POST: CardsController/Edit/5
-        [HttpPost("edit/{id}")]
+        [HttpPut("Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([FromRoute] int id, [FromBody] Cards collection)
+        public ActionResult Edit(int id, CardsDB collection)
         {
             try
             {
@@ -90,16 +90,16 @@ namespace dist_manage.Controllers
         }
 
         // GET: CardsController/Delete/5
-        //[HttpGet]
-        //public ActionResult Delete([FromRoute] int id)
-        //{
-        //    return Ok(dataHelper.Find(id));
-        //}
+        [HttpGet("delete/{id}")]
+        public ActionResult Delete(int id)
+        {
+            return Ok(dataHelper.Find(id));
+        }
 
-        // POST: CardsController/Edit/5
-        [HttpPost("delete/{id}")]
+        // Delete: CardsController/Delete/5
+        [HttpDelete("Delete/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete([FromRoute] int id)
+        public ActionResult Delete(int id, CardsDB collection)
         {
             try
             {
@@ -121,14 +121,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: CardsController/Import
-        //[HttpGet]
-        //public ActionResult Import()
-        //{
-        //    return Ok();
-        //}
+        [HttpGet("Import")]
+        public ActionResult Import()
+        {
+            return Ok();
+        }
 
         // POST: CardsController/Import
-        [HttpPost("import")]
+        [HttpPost("Import")]
         [ValidateAntiForgeryToken]
         public ActionResult Import(List<CardsDB> collection)
         {

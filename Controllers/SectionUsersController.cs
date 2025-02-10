@@ -28,14 +28,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: SectionUsersController/Add
-        [HttpGet]
+        [HttpGet("Add")]
         public ActionResult Add()
         {
             return Ok();
         }
 
         // POST: SectionUsersController/Add
-        [HttpPost]
+        [HttpPost("Add")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(List<SectionUsersDB> collection)
         {
@@ -54,14 +54,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: SectionUsersController/Edit/5
-        [HttpGet]
+        [HttpGet("Edit/{id}")]
         public ActionResult Edit(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
         // POST: SectionUsersController/Edit/5
-        [HttpPost]
+        [HttpPut("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SectionUsersDB collection)
         {
@@ -85,14 +85,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: SectionUsersController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id}")]
         public ActionResult Delete(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
         // POST: SectionUsersController/Edit/5
-        [HttpPost]
+        [HttpDelete("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, SectionUsersDB collection)
         {

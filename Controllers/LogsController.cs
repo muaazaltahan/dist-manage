@@ -39,8 +39,8 @@ namespace dist_manage.Controllers
             return Ok(data);
         }
 
-        //GET : LogsController
-        [HttpGet]
+        //GET : LogsController\ShowForDate
+        [HttpGet("ShowForDate")]
         public IActionResult ShowForDate()
         {
             var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == DateTime.Now.Date);
@@ -48,14 +48,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: LogsController/Add
-        [HttpGet]
+        [HttpGet("Add")]
         public ActionResult Add()
         {
             return Ok();
         }
 
         // POST: LogsController/Add
-        [HttpPost]
+        [HttpPost("Add")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(LogsDB collection, int userId)
         {
@@ -136,14 +136,14 @@ namespace dist_manage.Controllers
         }
 
         // GET: LogsController/Delete/5
-        [HttpGet]
+        [HttpGet("Delete/{id}")]
         public ActionResult Delete(int id)
         {
             return Ok(dataHelper.Find(id));
         }
 
-        // POST: LogsController/Edit/5
-        [HttpPost]
+        // POST: LogsController/Delete/5
+        [HttpDelete("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, LogsDB collection)
         {
