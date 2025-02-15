@@ -36,7 +36,7 @@ namespace dist_manage.Controllers
 
         // POST: ProgramsController/Add/5
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Add(ProgramsDB collection)
         {
             try
@@ -67,7 +67,7 @@ namespace dist_manage.Controllers
 
         // POST: ProgramsController/Edit/5
         [HttpPut("Edit/{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ProgramsDB collection)
         {
             try
@@ -98,7 +98,7 @@ namespace dist_manage.Controllers
 
         // POST: ProgramsController/Delete/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id, ProgramsDB collection)
         {
             try

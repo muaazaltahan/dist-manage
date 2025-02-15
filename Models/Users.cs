@@ -10,16 +10,6 @@ using System.Xml.Linq;
 
 namespace dist_manage.DB
 {
-    public class Users
-    {
-       [Key]
-        public int Id { get; set; } // Primary Key
-        public string Name { get; set; }
-        public string Phone { get; set; }
-        public string Password { get; set; }
-        public int Role { get; set; }
-        public string Notes { get; set; }
-    }
     public class UsersDB
     {
         [Key]

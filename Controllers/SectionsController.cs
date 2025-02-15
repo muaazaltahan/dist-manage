@@ -1,10 +1,6 @@
 ﻿using dist_manage.Models;
 using dist_manage.DB;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
-using System.Collections.Generic;
 
 namespace dist_manage.Controllers
 {
@@ -36,7 +32,7 @@ namespace dist_manage.Controllers
 
         // POST: SectionsController/Add/5
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Add(SectionsDB collection)
         {
             try
@@ -52,9 +48,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -67,7 +63,7 @@ namespace dist_manage.Controllers
 
         // POST: SectionsController/Edit/5
         [HttpPut("Edit/{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SectionsDB collection)
         {
             try
@@ -98,7 +94,7 @@ namespace dist_manage.Controllers
 
         // POST: SectionsController/Edit/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id, SectionsDB collection)
         {
             try

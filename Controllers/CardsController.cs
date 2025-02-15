@@ -36,8 +36,8 @@ namespace dist_manage.Controllers
 
         // POST: CardsController/Add
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(CardsDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Add(Cards collection)
         {
             try
             {
@@ -67,8 +67,8 @@ namespace dist_manage.Controllers
 
         // POST: CardsController/Edit/5
         [HttpPut("Edit/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CardsDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Cards collection)
         {
             try
             {
@@ -98,8 +98,8 @@ namespace dist_manage.Controllers
 
         // Delete: CardsController/Delete/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, CardsDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, Cards collection)
         {
             try
             {
@@ -129,8 +129,8 @@ namespace dist_manage.Controllers
 
         // POST: CardsController/Import
         [HttpPost("Import")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Import(List<CardsDB> collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Import(List<Cards> collection)
         {
             try
             {

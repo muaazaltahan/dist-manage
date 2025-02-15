@@ -29,5 +29,17 @@ namespace dist_manage.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost("RegisterAdmin")]
+        public async Task<ActionResult<LoginResCmd>> Login([FromBody] RegisterUserReqCmd data)
+        {
+            try
+            {
+                return await auth.RegisterAdmin(data);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

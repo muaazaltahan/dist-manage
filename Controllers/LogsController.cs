@@ -56,8 +56,8 @@ namespace dist_manage.Controllers
 
         // POST: LogsController/Add
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(LogsDB collection, int userId)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Add(Logs collection, int userId)
         {
             try
             {
@@ -144,8 +144,8 @@ namespace dist_manage.Controllers
 
         // POST: LogsController/Delete/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, LogsDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, Logs collection)
         {
             try
             {

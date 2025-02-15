@@ -24,9 +24,30 @@ namespace dist_manage.Models.SqlServerEF
             _jwt = configuration["Secrets:jwt"];
         }
 
+        public async Task<LoginResCmd> RegisterAdmin(RegisterUserReqCmd cmd)
+        {
+            var checkUsername = context.UsersDB.FirstOrDefault(u => u.Name == cmd.Username);
+            if (checkUsername != null) throw new Exception("Username exists");
+            var user = new UsersDB
+            {
+                Name = cmd.Username,
+                Password = ComputeHash(cmd.Password, _pepper, iteration),
+                Notes = cmd.Notes,
+                Phone = cmd.Phone,
+                Role = cmd.Role
+            };
+            var entry = context.UsersDB.Add(user);
+            await context.SaveChangesAsync();
+            var res = (LoginResCmd)entry.Entity;
+            var token = GenerateToken(entry.Entity);
+            res.AccessToken = token;
+            return res;
+        }
+
         public async Task<LoginResCmd> Login(LoginReqCmd data)
         {
             var user = context.UsersDB.FirstOrDefault(x => x.Name == data.Username);
+            if (user == null) throw new Exception("User Not Found");
             string passHash = ComputeHash(data.Password, _pepper, iteration);
             if (passHash != user.Password) throw new Exception("Wrong Email Or Password!");
             var AccessToken = GenerateToken(user);
