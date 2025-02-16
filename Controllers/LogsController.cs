@@ -41,9 +41,9 @@ namespace dist_manage.Controllers
 
         //GET : LogsController\ShowForDate
         [HttpGet("ShowForDate")]
-        public IActionResult ShowForDate()
+        public IActionResult ShowForDate(DateTime date)
         {
-            var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == DateTime.Now.Date);
+            var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == date.Date);
             return Ok(data);
         }
 
@@ -71,7 +71,8 @@ namespace dist_manage.Controllers
                         var result = dataHelper.Add(collection);
                         if (result == 1)
                         {
-                            return RedirectToAction(nameof(Index));
+                            var id = dataHelper.GetAllData().Select(x => x.Id).Last();
+                            return Ok(id);
 
                         }
                         else
@@ -82,7 +83,7 @@ namespace dist_manage.Controllers
                     else
                     {
                         // Error Message 
-                        return NotFound();
+                        return BadRequest("تم الاستلام سابقاً");
                     }
                 }
                 else
@@ -99,7 +100,8 @@ namespace dist_manage.Controllers
                                 var result = dataHelper.Add(collection);
                                 if (result == 1)
                                 {
-                                    return RedirectToAction(nameof(Index));
+                                    var id = dataHelper.GetAllData().Select(x => x.Id).Last();
+                                    return Ok(id);
 
                                 }
                                 else
@@ -110,14 +112,14 @@ namespace dist_manage.Controllers
                             else
                             {
                                 // Error Message 
-                                return NotFound();
+                                return BadRequest("تم الاستلام سابقاً");
                             }
                            
                         }
                         else
                         { 
                             // Error Message
-                            return NotFound();
+                            return BadRequest("لم يتم الموافقة على طلب الاستلام من غير قطاع");
                         }
                     }
                     else
@@ -129,9 +131,9 @@ namespace dist_manage.Controllers
 
 
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -160,9 +162,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
     }

@@ -44,7 +44,8 @@ namespace dist_manage.Controllers
                 var result = dataHelper.Add(collection);
                 if (result == 1)
                 {
-                    return RedirectToAction(nameof(Index));
+                    var id = dataHelper.GetAllData().Select(x => x.Id).Last();
+                    return Ok(id);
 
                 }
                 else
@@ -52,9 +53,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -83,9 +84,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -114,9 +115,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
     }

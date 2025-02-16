@@ -48,9 +48,9 @@ namespace dist_manage.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -79,9 +79,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -110,9 +110,9 @@ namespace dist_manage.Controllers
                     return Ok();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
     }
