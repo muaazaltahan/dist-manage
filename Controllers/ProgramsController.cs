@@ -42,19 +42,11 @@ namespace dist_manage.Controllers
             try
             {
                 var result = dataHelper.Add(collection);
-                if (result == 1)
-                {
-                    return RedirectToAction(nameof(Index));
-
-                }
-                else
-                {
-                    return Ok();
-                }
+                return Ok(result);
             }
-            catch
+            catch(Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 

@@ -24,11 +24,11 @@ namespace dist_manage.Migrations
 
             modelBuilder.Entity("dist_manage.DB.CardsDB", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -52,7 +52,7 @@ namespace dist_manage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Sectionid")
+                    b.Property<int?>("Sectionid")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -110,11 +110,11 @@ namespace dist_manage.Migrations
 
             modelBuilder.Entity("dist_manage.DB.LogsDB", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<int>("Link_Prog_CardId")
                         .HasColumnType("int");
@@ -170,11 +170,11 @@ namespace dist_manage.Migrations
 
             modelBuilder.Entity("dist_manage.DB.RequestDB", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<int>("AdminId")
                         .HasColumnType("int");
@@ -229,11 +229,11 @@ namespace dist_manage.Migrations
 
             modelBuilder.Entity("dist_manage.DB.SectionUsersDB", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<int>("SectionsId")
                         .HasColumnType("int");
@@ -286,9 +286,7 @@ namespace dist_manage.Migrations
                 {
                     b.HasOne("dist_manage.DB.SectionsDB", "Section")
                         .WithMany()
-                        .HasForeignKey("Sectionid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Sectionid");
 
                     b.Navigation("Section");
                 });

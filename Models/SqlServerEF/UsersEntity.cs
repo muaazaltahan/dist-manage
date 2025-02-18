@@ -18,9 +18,9 @@ namespace dist_manage.Models.SqlServerEF
         {
             if (db.Database.CanConnect())
             {
-                db.UsersDB.Add(table);
+                var entry = db.UsersDB.Add(table);
                 db.SaveChanges();
-                return 1;
+                return entry.Entity.Id;
             }
             else
             {

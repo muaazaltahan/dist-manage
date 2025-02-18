@@ -31,8 +31,8 @@
         public string Name { get; set; }
         public string Phone { get; set; }
 
-        public SectionsDB Section { get; set; }
-        public int Sectionid { get; set; } // Foreign Key to Section
+        public SectionsDB? Section { get; set; }
+        public int? Sectionid { get; set; } // Foreign Key to Section
         public string Address { get; set; }
         public int Members { get; set; }
         public bool Active { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using dist_manage.DB;
+using Microsoft.EntityFrameworkCore;
 
 namespace dist_manage.Models.SqlServerEF
 {

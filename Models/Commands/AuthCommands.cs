@@ -15,22 +15,9 @@ namespace dist_manage.Models.Commands
         public string Notes { get; set; } = string.Empty;
         public int Role { get; set; }
     }
-    public class LoginResCmd : Users
+    public class LoginResCmd : UsersDB
     {
         public string AccessToken { get; set; }
-
-        public static explicit operator LoginResCmd(UsersDB v)
-        {
-            return new LoginResCmd
-            {
-                Id = v.Id,
-                Name = v.Name,
-                Notes = v.Notes,
-                Role = v.Role,
-                //Password = v.Password,
-                Phone = v.Phone
-            };
-        }
     }
     public static class AuthHelpers
     {

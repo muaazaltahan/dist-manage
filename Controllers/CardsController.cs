@@ -140,9 +140,9 @@ namespace dist_manage.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex);
             }
         }
     }
