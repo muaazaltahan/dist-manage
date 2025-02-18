@@ -237,10 +237,10 @@ body {
     width: 60px;
 }
 
-.sidebar-hide .sidebar.sidebar-hide-to-small .nano-content > ul .label,
+/* .sidebar-hide .sidebar.sidebar-hide-to-small .nano-content > ul .label,
 .sidebar-hide .sidebar.sidebar-hide-to-small .nano-content > ul .content {
     display: none;
-}
+} */
 .sidebar-hide .sidebar.sidebar-hide-to-small .nano-content > ul .badge{
     display: none;
 }
