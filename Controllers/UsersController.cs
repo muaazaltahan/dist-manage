@@ -36,12 +36,13 @@ namespace dist_manage.Controllers
 
         // POST: UsersController/Add/5
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Add(UsersDB collection)
         {
             try
             {
                 var result = dataHelper.Add(collection);
+<<<<<<< HEAD
                 if (result == 1)
                 {
                     var id = dataHelper.GetAllData().Select(x => x.Id).Last();
@@ -54,6 +55,11 @@ namespace dist_manage.Controllers
                 }
             }
             catch (Exception ex)
+=======
+                return Ok(result);
+            }
+            catch(Exception ex)
+>>>>>>> 6d5a826b5e00fd4eb2bc309dabdc50ce1798b176
             {
                 return BadRequest(ex.Message);
             }
@@ -68,7 +74,7 @@ namespace dist_manage.Controllers
 
         // POST: UsersController/Edit/5
         [HttpPut("Edit/{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UsersDB collection)
         {
             try
@@ -99,7 +105,7 @@ namespace dist_manage.Controllers
 
         // POST: UsersController/Delete/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id, UsersDB collection)
         {
             try

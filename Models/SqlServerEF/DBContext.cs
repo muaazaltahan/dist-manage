@@ -10,7 +10,7 @@ namespace dist_manage.Models.SqlServerEF
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.//SQLServer;Database=dist_manageDB;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=DMTest;Trusted_Connection=true");
         }
         
         public DbSet<CardsDB> CardsDB { get; set; }

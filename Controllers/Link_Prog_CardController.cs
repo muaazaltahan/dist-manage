@@ -36,8 +36,8 @@ namespace dist_manage.Controllers
 
         // POST: Link_Prog_CardController/Add/5
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(List<Link_Prog_CardDB> collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Add(List<Link_Prog_Card> collection)
         {
             try
             {
@@ -63,8 +63,8 @@ namespace dist_manage.Controllers
 
         // POST: Link_Prog_CardController/Edit/5
         [HttpPut("Edit/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Link_Prog_CardDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Link_Prog_Card collection)
         {
             try
             {
@@ -94,8 +94,8 @@ namespace dist_manage.Controllers
 
         // POST: Link_Prog_CardController/Edit/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Link_Prog_CardDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, Link_Prog_Card collection)
         {
             try
             {

@@ -36,8 +36,8 @@ namespace dist_manage.Controllers
 
         // POST: SectionUsersController/Add
         [HttpPost("Add")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(List<SectionUsersDB> collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Add(List<SectionUsers> collection)
         {
             try
             {
@@ -49,7 +49,11 @@ namespace dist_manage.Controllers
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 return BadRequest(ex.Message);
+=======
+                return BadRequest(ex);
+>>>>>>> 6d5a826b5e00fd4eb2bc309dabdc50ce1798b176
             }
         }
 
@@ -62,8 +66,8 @@ namespace dist_manage.Controllers
 
         // POST: SectionUsersController/Edit/5
         [HttpPut("Edit/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, SectionUsersDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, SectionUsers collection)
         {
             try
             {
@@ -93,8 +97,8 @@ namespace dist_manage.Controllers
 
         // POST: SectionUsersController/Edit/5
         [HttpDelete("Delete/{id}")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, SectionUsersDB collection)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, SectionUsers collection)
         {
             try
             {
