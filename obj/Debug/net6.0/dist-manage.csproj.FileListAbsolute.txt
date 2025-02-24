@@ -783,3 +783,4 @@ C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Microsoft.AspNetCore.Jso
 C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\ClientApp\dist\client-app\prerendered-routes.json

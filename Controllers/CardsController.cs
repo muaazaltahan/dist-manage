@@ -63,7 +63,11 @@ namespace dist_manage.Controllers
         [HttpGet("Edit/{id}")]
         public ActionResult Edit(int id)
         {
-            return Ok(dataHelper.Find(id));
+            try
+            {
+                return Ok(dataHelper.Find(id));
+            }
+            catch { return BadRequest("card not found"); }
         }
 
         // POST: CardsController/Edit/5
@@ -90,13 +94,6 @@ namespace dist_manage.Controllers
             }
         }
 
-        // GET: CardsController/Delete/5
-        [HttpGet("delete/{id}")]
-        public ActionResult Delete(int id)
-        {
-            return Ok(dataHelper.Find(id));
-        }
-
         // Delete: CardsController/Delete/5
         [HttpDelete("Delete/{id}")]
         //[ValidateAntiForgeryToken]
@@ -121,13 +118,6 @@ namespace dist_manage.Controllers
             }
         }
 
-        // GET: CardsController/Import
-        [HttpGet("Import")]
-        public ActionResult Import()
-        {
-            return Ok();
-        }
-
         // POST: CardsController/Import
         [HttpPost("Import")]
         //[ValidateAntiForgeryToken]
@@ -141,15 +131,9 @@ namespace dist_manage.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-<<<<<<< HEAD
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-=======
-            catch(Exception ex)
-            {
-                return BadRequest(ex);
->>>>>>> 6d5a826b5e00fd4eb2bc309dabdc50ce1798b176
             }
         }
     }

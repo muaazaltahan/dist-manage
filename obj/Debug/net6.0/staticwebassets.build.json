@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ppkafyGpmBggP95bkdJDxjCPYF2V+BBTbNb9CD2eGVE=",
+  "Hash": "2QdUbWRFkuV2xEr2WilJ2sgGu02J3DBW3r185oWREs8=",
   "Source": "dist-manage",
   "BasePath": "_content/dist-manage",
   "Mode": "Default",
@@ -1360,23 +1360,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\avatar\\3.jpg"
     },
     {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\avatar\\Thumbs.db",
-      "SourceId": "dist-manage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
-      "BasePath": "_content/dist-manage",
-      "RelativePath": "assets/images/avatar/Thumbs.db",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\avatar\\Thumbs.db"
-    },
-    {
       "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\avatar\\usa-flag.png",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
@@ -1528,23 +1511,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\bookingSystem\\8.png"
-    },
-    {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\bookingSystem\\Thumbs.db",
-      "SourceId": "dist-manage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
-      "BasePath": "_content/dist-manage",
-      "RelativePath": "assets/images/bookingSystem/Thumbs.db",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\bookingSystem\\Thumbs.db"
     },
     {
       "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\chat-person-add.png",
@@ -1989,23 +1955,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\product_1\\pizza2.jpg"
     },
     {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\product_1\\Thumbs.db",
-      "SourceId": "dist-manage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
-      "BasePath": "_content/dist-manage",
-      "RelativePath": "assets/images/product_1/Thumbs.db",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\product_1\\Thumbs.db"
-    },
-    {
       "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\product-2.jpg",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
@@ -2159,23 +2108,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\smile.png"
     },
     {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\Thumbs.db",
-      "SourceId": "dist-manage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
-      "BasePath": "_content/dist-manage",
-      "RelativePath": "assets/images/Thumbs.db",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\Thumbs.db"
-    },
-    {
       "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\images\\user.jpg",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
@@ -2293,40 +2225,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\watch.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\js\\api.js",
-      "SourceId": "dist-manage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
-      "BasePath": "_content/dist-manage",
-      "RelativePath": "assets/js/api.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\api.js"
-    },
-    {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\js\\auth.js",
-      "SourceId": "dist-manage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
-      "BasePath": "_content/dist-manage",
-      "RelativePath": "assets/js/auth.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\auth.js"
     },
     {
       "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\js\\lib\\barRating\\barRating.init.js",
@@ -4658,6 +4556,74 @@
       "OriginalItemSpec": "wwwroot\\assets\\js\\scripts.js"
     },
     {
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\assets\\sound\\error_CDOxCYm.mp3",
+      "SourceId": "dist-manage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
+      "BasePath": "_content/dist-manage",
+      "RelativePath": "assets/sound/error_CDOxCYm.mp3",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\sound\\error_CDOxCYm.mp3"
+    },
+    {
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\chunk-FYCWT7RR.js",
+      "SourceId": "dist-manage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
+      "BasePath": "_content/dist-manage",
+      "RelativePath": "chunk-FYCWT7RR.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\chunk-FYCWT7RR.js"
+    },
+    {
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\chunk-OBTE2TH3.js",
+      "SourceId": "dist-manage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
+      "BasePath": "_content/dist-manage",
+      "RelativePath": "chunk-OBTE2TH3.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\chunk-OBTE2TH3.js"
+    },
+    {
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\favicon.ico",
+      "SourceId": "dist-manage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
+      "BasePath": "_content/dist-manage",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
       "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\index.html",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
@@ -4675,12 +4641,12 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\login.html",
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\main-JDCUIOV7.js",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
       "BasePath": "_content/dist-manage",
-      "RelativePath": "login.html",
+      "RelativePath": "main-JDCUIOV7.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4689,15 +4655,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\login.html"
+      "OriginalItemSpec": "wwwroot\\main-JDCUIOV7.js"
     },
     {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\programs.html",
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\polyfills-FFHMD2TL.js",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
       "BasePath": "_content/dist-manage",
-      "RelativePath": "programs.html",
+      "RelativePath": "polyfills-FFHMD2TL.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4706,15 +4672,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\programs.html"
+      "OriginalItemSpec": "wwwroot\\polyfills-FFHMD2TL.js"
     },
     {
-      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\users.html",
+      "Identity": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\styles-QTMK22CM.css",
       "SourceId": "dist-manage",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ASUS\\source\\repos\\dist-manage\\wwwroot\\",
       "BasePath": "_content/dist-manage",
-      "RelativePath": "users.html",
+      "RelativePath": "styles-QTMK22CM.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4723,7 +4689,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\users.html"
+      "OriginalItemSpec": "wwwroot\\styles-QTMK22CM.css"
     }
   ]
 }

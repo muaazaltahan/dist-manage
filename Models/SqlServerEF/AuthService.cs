@@ -31,7 +31,7 @@ namespace dist_manage.Models.SqlServerEF
             var user = new UsersDB
             {
                 Name = cmd.Username,
-                Password = ComputeHash(cmd.Password, _pepper, iteration),
+                Password = ComputeHash(cmd.Password, iteration),
                 Notes = cmd.Notes,
                 Phone = cmd.Phone,
                 Role = cmd.Role
@@ -44,26 +44,26 @@ namespace dist_manage.Models.SqlServerEF
             return res;
         }
 
-        public async Task<LoginResCmd> Login(LoginReqCmd data)
+        public LoginResCmd Login(LoginReqCmd data)
         {
             var user = context.UsersDB.FirstOrDefault(x => x.Name == data.Username);
             if (user == null) throw new Exception("User Not Found");
-            string passHash = ComputeHash(data.Password, _pepper, iteration);
+            string passHash = ComputeHash(data.Password, iteration);
             if (passHash != user.Password) throw new Exception("Wrong Email Or Password!");
             var AccessToken = GenerateToken(user);
             
             return AuthHelpers.GetLoginRes(user, AccessToken);
         }
-        private string ComputeHash(string password, string pepper, int iteration)
+        public string ComputeHash(string password, int iteration)
         {
             if (iteration <= 0) return password;
 
             using var sha256 = SHA256.Create();
-            var passwordSaltPepper = $"{password}{pepper}";
+            var passwordSaltPepper = $"{password}{_pepper}";
             var byteValue = Encoding.UTF8.GetBytes(passwordSaltPepper);
             var byteHash = sha256.ComputeHash(byteValue);
             var hash = Convert.ToBase64String(byteHash);
-            return ComputeHash(hash, pepper, iteration - 1);
+            return ComputeHash(hash, iteration - 1);
         }
         private string GenerateToken(UsersDB data)
         {

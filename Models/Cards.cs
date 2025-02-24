@@ -37,5 +37,11 @@
         public int Members { get; set; }
         public bool Active { get; set; }
         public string Notes { get; set; }
+        public string FormId { get; set; }
+        public string FamilyId { get; set; }
+        public string FatherStatus { get; set; }
+        public string BlueCardId { get; set; }
+        public bool HasBlueCard { get; set; }
+        public bool Verification { get; set; }
     }
 }

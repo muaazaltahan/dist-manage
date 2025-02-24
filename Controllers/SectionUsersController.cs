@@ -49,11 +49,7 @@ namespace dist_manage.Controllers
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
                 return BadRequest(ex.Message);
-=======
-                return BadRequest(ex);
->>>>>>> 6d5a826b5e00fd4eb2bc309dabdc50ce1798b176
             }
         }
 
