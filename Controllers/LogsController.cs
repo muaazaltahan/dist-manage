@@ -10,6 +10,7 @@ namespace dist_manage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("User")]
     public class LogsController : ControllerBase
     {
         private readonly IDataHelper<LogsDB> dataHelper;
@@ -45,13 +46,6 @@ namespace dist_manage.Controllers
         {
             var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == date.Date);
             return Ok(data);
-        }
-
-        // GET: LogsController/Add
-        [HttpGet("Add")]
-        public ActionResult Add()
-        {
-            return Ok();
         }
 
         // POST: LogsController/Add
@@ -137,13 +131,6 @@ namespace dist_manage.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        // GET: LogsController/Delete/5
-        [HttpGet("Delete/{id}")]
-        public ActionResult Delete(int id)
-        {
-            return Ok(dataHelper.Find(id));
         }
 
         // POST: LogsController/Delete/5

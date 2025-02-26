@@ -14,33 +14,35 @@ namespace dist_manage.Controllers
     public class ProgramsController : ControllerBase
     {
         private readonly IDataHelper<ProgramsDB> dataHelper;
-        private DBContext db;
-
+        private readonly IDataHelper<Link_Prog_CardDB> linkDataHelper;
         public ProgramsController(
-            IDataHelper<ProgramsDB> dataHelper, DBContext _db)
+            IDataHelper<ProgramsDB> dataHelper,
+            IDataHelper<Link_Prog_CardDB> linkDataHelper)
         {
             this.dataHelper = dataHelper;
-            this.db = _db;
+            this.linkDataHelper = linkDataHelper;
         }
 
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("program-cards/{programId}")]
         public ActionResult<IEnumerable<CardsDB>> GetProgramCards([FromRoute] int programId)
         {
             try
             {
-                return Ok(db.Link_Prog_CardDB.Where(l => l.ProgramsId == programId).Select(l => l.Cards).ToList());
+                return Ok(linkDataHelper.GetAllData().Where(l => l.ProgramsId == programId).Select(l => l.CardsId).ToList());
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("program-card-link/{programId}/{cardId}")]
         public ActionResult<Link_Prog_Card> GetProgramCardLink([FromRoute] int programId, [FromRoute] int cardId)
         {
             try
             {
-                var link = db.Link_Prog_CardDB.FirstOrDefault(l => l.CardsId == cardId && l.ProgramsId == programId);
+                var link = linkDataHelper.GetAllData().FirstOrDefault(l => l.CardsId == cardId && l.ProgramsId == programId);
                 if (link == null) return BadRequest("no link to this card");
                 return Ok(link);
             } catch (Exception ex)
@@ -50,21 +52,22 @@ namespace dist_manage.Controllers
         }
 
         //GET : ProgramsController
-        [HttpGet]
+        [Authorize("User"), HttpGet]
         public IActionResult Index()
         {
             var data = dataHelper.GetAllData();
             return Ok(data);
         }
 
-        // GET: ProgramsController/Add/5
-        [HttpGet("Add")]
-        public ActionResult Add()
+        [Authorize("User"), HttpGet("{id}")]
+        public IActionResult Find(int id)
         {
-            return Ok();
+            var data = dataHelper.Find(id);
+            return Ok(data);
         }
 
         // POST: ProgramsController/Add/5
+        [Authorize(Policy = "AdminOnly")]
         [HttpPost("Add")]
         //[ValidateAntiForgeryToken]
         public ActionResult Add(ProgramsDB collection)
@@ -72,16 +75,7 @@ namespace dist_manage.Controllers
             try
             {
                 var result = dataHelper.Add(collection);
-                if (result == 1)
-                {
-                    var id = dataHelper.GetAllData().Select(x => x.Id).Last();
-                    return Ok(id);
-
-                }
-                else
-                {
-                    return Ok();
-                }
+                return Ok(result);
             }
             catch(Exception ex)
             {
@@ -89,14 +83,8 @@ namespace dist_manage.Controllers
             }
         }
 
-        // GET: ProgramsController/Edit/5
-        [HttpGet("Edit/{id}")]
-        public ActionResult Edit(int id)
-        {
-            return Ok(dataHelper.Find(id));
-        }
-
         // POST: ProgramsController/Edit/5
+        [Authorize(Policy = "AdminOnly")]
         [HttpPut("Edit/{id}")]
         //[ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ProgramsDB collection)
@@ -121,6 +109,7 @@ namespace dist_manage.Controllers
         }
 
         // POST: ProgramsController/Delete/5
+        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("Delete/{id}")]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

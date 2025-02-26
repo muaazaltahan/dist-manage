@@ -10,6 +10,7 @@ namespace dist_manage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("AdminOnly")]
     public class SectionUsersController : ControllerBase
     {
         private readonly IDataHelper<SectionUsersDB> dataHelper;

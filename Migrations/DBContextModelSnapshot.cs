@@ -37,6 +37,25 @@ namespace dist_manage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BlueCardId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FamilyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FatherStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FormId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasBlueCard")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Members")
                         .HasColumnType("int");
 
@@ -54,6 +73,9 @@ namespace dist_manage.Migrations
 
                     b.Property<int?>("Sectionid")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Verification")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

@@ -18,6 +18,7 @@ namespace dist_manage.Models.SqlServerEF
         {
             if (db.Database.CanConnect())
             {
+                if (db.UsersDB.Where(x => x.Name == table.Name).Count() > 0) throw new Exception("Username Exists");
                 var entry = db.UsersDB.Add(table);
                 db.SaveChanges();
                 return entry.Entity.Id;

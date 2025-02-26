@@ -38,9 +38,8 @@ namespace dist_manage.Models.SqlServerEF
             };
             var entry = context.UsersDB.Add(user);
             await context.SaveChangesAsync();
-            var res = (LoginResCmd)entry.Entity;
             var token = GenerateToken(entry.Entity);
-            res.AccessToken = token;
+            var res = AuthHelpers.GetLoginRes(entry.Entity, token);
             return res;
         }
 
@@ -74,7 +73,7 @@ namespace dist_manage.Models.SqlServerEF
                 new Claim(ClaimTypes.Role, data.Role.ToString()),
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: DateTime.Now.AddDays(50),

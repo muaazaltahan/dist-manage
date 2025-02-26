@@ -20,22 +20,15 @@ namespace dist_manage.Controllers
             this.dataHelper = dataHelper;
         }
         //GET : CardsController
-        [HttpGet]
+        [Authorize("User"), HttpGet]
         public IActionResult Index()
         {
             var data = dataHelper.GetAllData();
             return Ok(data);
         }
 
-        // GET: CardsController/Add
-        [HttpGet("Add")]
-        public ActionResult Add()
-        {
-            return Ok();
-        }
-
         // POST: CardsController/Add
-        [HttpPost("Add")]
+        [Authorize(Policy = "AdminOnly"), HttpPost("Add")]
         //[ValidateAntiForgeryToken]
         public ActionResult Add(Cards collection)
         {
@@ -58,10 +51,9 @@ namespace dist_manage.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        // GET: CardsController/Edit/5
-        [HttpGet("Edit/{id}")]
-        public ActionResult Edit(int id)
+        // GET: CardsController/5
+        [HttpGet("{id}")]
+        public ActionResult Find(int id)
         {
             try
             {
@@ -69,9 +61,8 @@ namespace dist_manage.Controllers
             }
             catch { return BadRequest("card not found"); }
         }
-
         // POST: CardsController/Edit/5
-        [HttpPut("Edit/{id}")]
+        [Authorize(Policy = "AdminOnly"), HttpPut("Edit/{id}")]
         //[ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Cards collection)
         {
@@ -81,7 +72,6 @@ namespace dist_manage.Controllers
                 if (result == 1)
                 {
                     return RedirectToAction(nameof(Index));
-
                 }
                 else
                 {
@@ -95,7 +85,7 @@ namespace dist_manage.Controllers
         }
 
         // Delete: CardsController/Delete/5
-        [HttpDelete("Delete/{id}")]
+        [Authorize(Policy = "AdminOnly"), HttpDelete("Delete/{id}")]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Cards collection)
         {
@@ -119,7 +109,7 @@ namespace dist_manage.Controllers
         }
 
         // POST: CardsController/Import
-        [HttpPost("Import")]
+        [Authorize(Policy = "AdminOnly"), HttpPost("Import")]
         //[ValidateAntiForgeryToken]
         public ActionResult Import(List<Cards> collection)
         {

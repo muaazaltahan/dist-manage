@@ -13,7 +13,7 @@ namespace dist_manage.Models.Commands
         public string Password { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Notes { get; set; } = string.Empty;
-        public int Role { get; set; }
+        public UserRole Role { get; set; }
     }
     public class LoginResCmd : UsersDB
     {

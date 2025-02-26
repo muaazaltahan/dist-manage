@@ -10,6 +10,12 @@ using System.Xml.Linq;
 
 namespace dist_manage.DB
 {
+    public enum UserRole
+    {
+        Admin = 1,
+        User = 2,
+        Moderator = 3
+    }
     public class UsersDB
     {
         [Key]
@@ -17,7 +23,7 @@ namespace dist_manage.DB
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Password { get; set; }
-        public int Role { get; set; }
+        public UserRole Role { get; set; }
         public string Notes { get; set; }
     }
 }

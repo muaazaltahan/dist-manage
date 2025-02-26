@@ -10,6 +10,7 @@ namespace dist_manage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "AdminOnly")]
     public class Link_Prog_CardController : ControllerBase
     {
         private readonly IDataHelper<Link_Prog_CardDB> dataHelper;
@@ -25,13 +26,6 @@ namespace dist_manage.Controllers
         {
             var data = dataHelper.GetAllData();
             return Ok(data);
-        }
-
-        // GET: Link_Prog_CardController/Add/5
-        [HttpGet("Add")]
-        public ActionResult Add()
-        {
-            return Ok();
         }
 
         // POST: Link_Prog_CardController/Add/5
@@ -52,13 +46,6 @@ namespace dist_manage.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        // GET: Link_Prog_CardController/Edit/5
-        [HttpGet("Edit/{id}")]
-        public ActionResult Edit(int id)
-        {
-            return Ok(dataHelper.Find(id));
         }
 
         // POST: Link_Prog_CardController/Edit/5
@@ -83,13 +70,6 @@ namespace dist_manage.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        // GET: Link_Prog_CardController/Delete/5
-        [HttpGet("Delete/{id}")]
-        public ActionResult Delete(int id)
-        {
-            return Ok(dataHelper.Find(id));
         }
 
         // POST: Link_Prog_CardController/Edit/5
