@@ -67,14 +67,20 @@ namespace dist_manage.Controllers
         {
             var data = dataHelperCard.GetAllData()
                  .Join(dataHelperSectionUsers.GetAllData(), CardsDB => CardsDB.Sectionid, SectionUsersDB => SectionUsersDB.SectionsId, (CardsDB, SectionUsersDB) => new { CardsDB = CardsDB, SectionUsersDB = SectionUsersDB })
-                           .Join(dataHelperLink_Prog_Card.GetAllData(), temp => temp.CardsDB.Id, Link_Prog_CardDB => Link_Prog_CardDB.CardsId, (temp, Link_Prog_CardDB) => new { temp.CardsDB, temp.SectionUsersDB, Link_Prog_CardDB = Link_Prog_CardDB })
-                          .Join(dataHelper.GetAllData(), table => table.Link_Prog_CardDB.Id, LogsDB => LogsDB.Link_Prog_CardId, (table, LogsDB) => new { table.CardsDB, table.SectionUsersDB, table.Link_Prog_CardDB, LogsDB = LogsDB }).AsQueryable();
-            var Received = data.Where(x => x.LogsDB.LogDate.Date == DateTime.Now.Date);
-            List<Statistic> statistic = new List<Statistic>
+                  .Join(dataHelperSections.GetAllData(), temp => temp.SectionUsersDB.SectionsId, SectionsDB => SectionsDB.Id, (temp, SectionsDB) => new { temp.CardsDB, temp.SectionUsersDB, SectionsDB = SectionsDB })
+                 .Where(x => x.SectionUsersDB.UsersId == userId).ToList();
+            var Received = data
+                 .Join(dataHelperLink_Prog_Card.GetAllData(), temp => temp.CardsDB.Id, Link_Prog_CardDB => Link_Prog_CardDB.CardsId, (temp, Link_Prog_CardDB) => new { temp.CardsDB, temp.SectionUsersDB, Link_Prog_CardDB = Link_Prog_CardDB })
+                 .Join(dataHelper.GetAllData(), table => table.Link_Prog_CardDB.Id, LogsDB => LogsDB.Link_Prog_CardId, (table, LogsDB) => new { table.CardsDB, table.SectionUsersDB, table.Link_Prog_CardDB, LogsDB = LogsDB })
+                 .Where(x => x.LogsDB.LogDate.Date == DateTime.Now.Date);
+            var Result = data.Select(x => new Statistic
             {
-            
-            };
-            return Ok();
+                SectionName = x.SectionsDB.SectionName,
+                Count = data.Count(),
+                Received = Received.Count(),
+                NoReceived = data.Count() - Received.Count()
+            });;
+            return Ok(Result);
         }
 
         // POST: LogsController/Add
