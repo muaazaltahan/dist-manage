@@ -784,3 +784,8 @@ C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc
 C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\ASUS\source\repos\dist-manage\bin\Debug\net6.0\ClientApp\dist\client-app\prerendered-routes.json
+C:\Users\user9\source\repos\dist-manage\bin\Debug\net6.0\dist-manage.staticwebassets.runtime.json
+C:\Users\user9\source\repos\dist-manage\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\user9\source\repos\dist-manage\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\user9\source\repos\dist-manage\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\user9\source\repos\dist-manage\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

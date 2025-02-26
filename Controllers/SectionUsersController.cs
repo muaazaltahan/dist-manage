@@ -72,7 +72,6 @@ namespace dist_manage.Controllers
                 if (result == 1)
                 {
                     return RedirectToAction(nameof(Index));
-
                 }
                 else
                 {

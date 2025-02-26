@@ -10,13 +10,13 @@ namespace dist_manage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize("User")]
     public class LogsController : ControllerBase
     {
         private readonly IDataHelper<LogsDB> dataHelper;
         private readonly IDataHelper<RequestDB> dataHelperRequest;
         private readonly IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_Card;
         private readonly IDataHelper<SectionUsersDB> dataHelperSectionUsers;
+        private readonly IDataHelper<SectionsDB> dataHelperSections;
         private readonly IDataHelper<CardsDB> dataHelperCard;
 
         public LogsController(
@@ -24,12 +24,14 @@ namespace dist_manage.Controllers
             IDataHelper<RequestDB> dataHelperRequest,
             IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_Card,
             IDataHelper<SectionUsersDB> dataHelperSectionUsers,
+            IDataHelper<SectionsDB> dataHelperSections,
             IDataHelper<CardsDB> dataHelperCard)
         {
             this.dataHelper = dataHelper;
             this.dataHelperRequest = dataHelperRequest;
             this.dataHelperLink_Prog_Card = dataHelperLink_Prog_Card;
             this.dataHelperSectionUsers = dataHelperSectionUsers;
+            this.dataHelperSections = dataHelperSections;
             this.dataHelperCard = dataHelperCard;
         }
         //GET : LogsController
@@ -46,6 +48,39 @@ namespace dist_manage.Controllers
         {
             var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == date.Date);
             return Ok(data);
+        }
+
+        public class Statistic
+        {
+            public string SectionName { get; set; }
+
+            public int Count { get; set; }
+
+            public int Received { get; set; }
+            public int NoReceived { get; set; }
+
+
+        }
+        // GET: LogsController/Add
+        [HttpGet("Add")]
+        public ActionResult Add(int userId)
+        {
+            var data = dataHelperCard.GetAllData()
+                 .Join(dataHelperSectionUsers.GetAllData(), CardsDB => CardsDB.Sectionid, SectionUsersDB => SectionUsersDB.SectionsId, (CardsDB, SectionUsersDB) => new { CardsDB = CardsDB, SectionUsersDB = SectionUsersDB })
+                  .Join(dataHelperSections.GetAllData(), temp => temp.SectionUsersDB.SectionsId, SectionsDB => SectionsDB.Id, (temp, SectionsDB) => new { temp.CardsDB, temp.SectionUsersDB, SectionsDB = SectionsDB })
+                 .Where(x => x.SectionUsersDB.UsersId == userId).ToList();
+            var Received = data
+                 .Join(dataHelperLink_Prog_Card.GetAllData(), temp => temp.CardsDB.Id, Link_Prog_CardDB => Link_Prog_CardDB.CardsId, (temp, Link_Prog_CardDB) => new { temp.CardsDB, temp.SectionUsersDB, Link_Prog_CardDB = Link_Prog_CardDB })
+                 .Join(dataHelper.GetAllData(), table => table.Link_Prog_CardDB.Id, LogsDB => LogsDB.Link_Prog_CardId, (table, LogsDB) => new { table.CardsDB, table.SectionUsersDB, table.Link_Prog_CardDB, LogsDB = LogsDB })
+                 .Where(x => x.LogsDB.LogDate.Date == DateTime.Now.Date);
+            var Result = data.Select(x => new Statistic
+            {
+                SectionName = x.SectionsDB.SectionName,
+                Count = data.Count(),
+                Received = Received.Count(),
+                NoReceived = data.Count() - Received.Count()
+            });;
+            return Ok(Result);
         }
 
         // POST: LogsController/Add
@@ -110,10 +145,10 @@ namespace dist_manage.Controllers
                                 // Error Message 
                                 return BadRequest("تم الاستلام سابقاً");
                             }
-                           
+
                         }
                         else
-                        { 
+                        {
                             // Error Message
                             return BadRequest("لم يتم الموافقة على طلب الاستلام من غير قطاع");
                         }
@@ -131,6 +166,13 @@ namespace dist_manage.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        // GET: LogsController/Delete/5
+        [HttpGet("Delete/{id}")]
+        public ActionResult Delete(int id)
+        {
+            return Ok(dataHelper.Find(id));
         }
 
         // POST: LogsController/Delete/5
