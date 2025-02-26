@@ -73,9 +73,9 @@ namespace dist_manage.Controllers
                  .Join(dataHelperLink_Prog_Card.GetAllData(), temp => temp.CardsDB.Id, Link_Prog_CardDB => Link_Prog_CardDB.CardsId, (temp, Link_Prog_CardDB) => new { temp.CardsDB, temp.SectionUsersDB, Link_Prog_CardDB = Link_Prog_CardDB })
                  .Join(dataHelper.GetAllData(), table => table.Link_Prog_CardDB.Id, LogsDB => LogsDB.Link_Prog_CardId, (table, LogsDB) => new { table.CardsDB, table.SectionUsersDB, table.Link_Prog_CardDB, LogsDB = LogsDB })
                  .Where(x => x.LogsDB.LogDate.Date == DateTime.Now.Date);
-            var Result = data.Select(x => new Statistic
+            var Result = data.GroupBy(x => x.SectionsDB).Select(x => new Statistic
             {
-                SectionName = x.SectionsDB.SectionName,
+                SectionName = x.Key.SectionName,
                 Count = data.Count(),
                 Received = Received.Count(),
                 NoReceived = data.Count() - Received.Count()
