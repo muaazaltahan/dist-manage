@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections.Generic;
+using dist_manage.Models.SqlServerEF;
 
 namespace dist_manage.Controllers
 {
@@ -13,11 +14,13 @@ namespace dist_manage.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IDataHelper<UsersDB> dataHelper;
+        private readonly AuthService authService;
 
         public UsersController(
-            IDataHelper<UsersDB> dataHelper)
+            IDataHelper<UsersDB> dataHelper, AuthService authService)
         {
             this.dataHelper = dataHelper;
+            this.authService = authService;
         }
         //GET : UsersController
         [HttpGet]
@@ -41,25 +44,12 @@ namespace dist_manage.Controllers
         {
             try
             {
-                var result = dataHelper.Add(collection);
-<<<<<<< HEAD
-                if (result == 1)
-                {
-                    var id = dataHelper.GetAllData().Select(x => x.Id).Last();
-                    return Ok(id);
-
-                }
-                else
-                {
-                    return Ok();
-                }
-            }
-            catch (Exception ex)
-=======
+                var user = collection;
+                user.Password = authService.ComputeHash(collection.Password, 3);
+                var result = dataHelper.Add(user);
                 return Ok(result);
             }
             catch(Exception ex)
->>>>>>> 6d5a826b5e00fd4eb2bc309dabdc50ce1798b176
             {
                 return BadRequest(ex.Message);
             }

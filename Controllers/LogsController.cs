@@ -84,8 +84,10 @@ namespace dist_manage.Controllers
         {
             try
             {
+                //var log = dataHelper.GetAllData().Where(l => l.Link_Prog_CardId == collection.Link_Prog_CardId);
+                //if (log != null) return BadRequest("تم الاستلام سابقاً");
                 var sectionid = dataHelperSectionUsers.GetAllData()
-                    .Join(dataHelperCard.GetAllData(), SectionUsersDB => SectionUsersDB.SectionsId, Cards => Cards.Sectionid, (SectionUsersDB, CardsDB) => new { SectionUsersDB = SectionUsersDB, CardsDB = CardsDB }).Where(x => x.SectionUsersDB.UsersId == userId)
+                    .Join(dataHelperCard.GetAllData(), SectionUsersDB => SectionUsersDB.SectionsId, Cards => Cards.Sectionid, (SectionUsersDB, CardsDB) => new { SectionUsersDB = SectionUsersDB, CardsDB = CardsDB }).Where(x => x.SectionUsersDB.UsersId == collection.UsersId && x.CardsDB.Id == collection.CardId)
                     .ToList();
                 if (sectionid.Count > 0)
                 {
@@ -94,7 +96,7 @@ namespace dist_manage.Controllers
                         var result = dataHelper.Add(collection);
                         if (result == 1)
                         {
-                            var id = dataHelper.GetAllData().Select(x => x.Id).Last();
+                            var id = dataHelper.GetAllData().Last();
                             return Ok(id);
 
                         }
@@ -112,7 +114,7 @@ namespace dist_manage.Controllers
                 else
                 {
                     var data = dataHelperRequest.GetAllData()
-                   .Where(x => x.Id == collection.Link_Prog_CardId && x.RequestDate.Date == DateTime.Now.Date)
+                   .Where(x => x.Link_Prog_CardId == collection.Link_Prog_CardId && x.RequestDate.Date == DateTime.Now.Date)
                    .ToList();
                     if (data.Count > 0)
                     {
@@ -147,8 +149,8 @@ namespace dist_manage.Controllers
                     }
                     else
                     {
-                        // Redirect to request
-                        return Redirect("RequestController/Add");
+                        // Error Message
+                        return BadRequest("يرجى طلب الاستلام من غير قطاع");
                     }
                 }
 

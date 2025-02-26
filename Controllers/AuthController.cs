@@ -18,11 +18,11 @@ namespace dist_manage.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResCmd>> Login([FromBody] LoginReqCmd data)
+        public ActionResult<LoginResCmd> Login([FromBody] LoginReqCmd data)
         {
             try
             {
-                return await auth.Login(data);
+                return auth.Login(data);
             }
             catch (Exception ex)
             {

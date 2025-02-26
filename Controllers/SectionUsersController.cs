@@ -50,9 +50,10 @@ namespace dist_manage.Controllers
             catch (Exception ex)
             {
 
+
                 return BadRequest(ex.Message);
 
-                return BadRequest(ex);
+    
             }
         }
 
