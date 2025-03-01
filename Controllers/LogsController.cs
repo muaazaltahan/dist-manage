@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections.Generic;
+using dist_manage.Models.SqlServerEF;
 
 namespace dist_manage.Controllers
 {
@@ -17,7 +18,7 @@ namespace dist_manage.Controllers
         private readonly IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_Card;
         private readonly IDataHelper<SectionUsersDB> dataHelperSectionUsers;
         private readonly IDataHelper<SectionsDB> dataHelperSections;
-        private readonly IDataHelper<CardsDB> dataHelperCard;
+        private readonly CardsEntity dataHelperCard;
 
         public LogsController(
             IDataHelper<LogsDB> dataHelper,
@@ -25,7 +26,7 @@ namespace dist_manage.Controllers
             IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_Card,
             IDataHelper<SectionUsersDB> dataHelperSectionUsers,
             IDataHelper<SectionsDB> dataHelperSections,
-            IDataHelper<CardsDB> dataHelperCard)
+            CardsEntity dataHelperCard)
         {
             this.dataHelper = dataHelper;
             this.dataHelperRequest = dataHelperRequest;
@@ -35,18 +36,28 @@ namespace dist_manage.Controllers
             this.dataHelperCard = dataHelperCard;
         }
         //GET : LogsController
-        [HttpGet]
+        [HttpGet, Authorize]
         public IActionResult Index()
         {
-            var data = dataHelper.GetAllData();
+            var data = dataHelper.GetAllData().Select(x =>
+            {
+                var link = dataHelperLink_Prog_Card.Find(x.Link_Prog_CardId);
+                var card = dataHelperCard.Find(link.CardsId);
+                return new { LogDate = x.LogDate, Card = card, Id = x.Id };
+            });
             return Ok(data);
         }
 
         //GET : LogsController\ShowForDate
-        [HttpGet("ShowForDate")]
+        [HttpGet("ShowForDate"), Authorize]
         public IActionResult ShowForDate(DateTime date)
         {
-            var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == date.Date);
+            var data = dataHelper.GetAllData().Where(x => x.LogDate.Date == date.Date).Select(x =>
+            {
+                var link = dataHelperLink_Prog_Card.Find(x.Link_Prog_CardId);
+                var card = dataHelperCard.Find(link.CardsId);
+                return new { LogDate = x.LogDate, Card = card, Id = x.Id };
+            });
             return Ok(data);
         }
 
@@ -62,7 +73,7 @@ namespace dist_manage.Controllers
 
         }
         // GET: LogsController/Add
-        [HttpGet("Add")]
+        [HttpGet("Add"), Authorize]
         public ActionResult Add(int userId)
         {
             var data = dataHelperCard.GetAllData()
@@ -84,14 +95,12 @@ namespace dist_manage.Controllers
         }
 
         // POST: LogsController/Add
-        [HttpPost("Add")]
+        [HttpPost("Add"), Authorize]
         //[ValidateAntiForgeryToken]
         public ActionResult Add(Logs collection, int userId)
         {
             try
             {
-                //var log = dataHelper.GetAllData().Where(l => l.Link_Prog_CardId == collection.Link_Prog_CardId);
-                //if (log != null) return BadRequest("تم الاستلام سابقاً");
                 var sectionid = dataHelperSectionUsers.GetAllData()
                     .Join(dataHelperCard.GetAllData(), SectionUsersDB => SectionUsersDB.SectionsId, Cards => Cards.Sectionid, (SectionUsersDB, CardsDB) => new { SectionUsersDB = SectionUsersDB, CardsDB = CardsDB }).Where(x => x.SectionUsersDB.UsersId == collection.UsersId && x.CardsDB.Id == collection.CardId)
                     .ToList();
@@ -168,15 +177,8 @@ namespace dist_manage.Controllers
             }
         }
 
-        // GET: LogsController/Delete/5
-        [HttpGet("Delete/{id}")]
-        public ActionResult Delete(int id)
-        {
-            return Ok(dataHelper.Find(id));
-        }
-
         // POST: LogsController/Delete/5
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}"), Authorize("Moderator")]
         //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Logs collection)
         {

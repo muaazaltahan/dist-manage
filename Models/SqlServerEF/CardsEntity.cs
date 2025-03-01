@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace dist_manage.Models.SqlServerEF
 {
-    public class CardsEntity : IDataHelper<CardsDB>
+    public class CardsEntity
     {
         private DBContext db;
         private CardsDB _table;
-        public CardsEntity()
+        public CardsEntity(DBContext db)
         {
-            db = new DBContext();
+            this.db = db;
         }
         public int Add(CardsDB table)
         {
@@ -29,7 +29,7 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Delete(int Id)
+        public int Delete(string Id)
         {
             if (db.Database.CanConnect())
             {
@@ -44,7 +44,7 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public int Edit(int Id, CardsDB table)
+        public int Edit(string Id, CardsDB table)
         {
             db = new DBContext();
             if (db.Database.CanConnect())
@@ -59,7 +59,7 @@ namespace dist_manage.Models.SqlServerEF
             }
         }
 
-        public CardsDB Find(int Id)
+        public CardsDB Find(string Id)
         {
             if (db.Database.CanConnect())
             {

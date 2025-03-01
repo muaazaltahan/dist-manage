@@ -61,7 +61,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuer = false,
             ValidateAudience = false,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Secrets:jwt"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vas23doif54iw35aeoptghysdavas23doif54iw35aeoptghysda"))
         };
     });
 builder.Services.AddAuthorization(options =>
@@ -81,7 +81,7 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddDbContext<DBContext>();
 builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<IDataHelper<CardsDB>, CardsEntity>();
+builder.Services.AddScoped<CardsEntity>();
 builder.Services.AddScoped<IDataHelper<ProgramsDB>, ProgramsEntity>();
 builder.Services.AddScoped<IDataHelper<UsersDB>, UsersEntity>();
 builder.Services.AddScoped<IDataHelper<LogsDB>, LogsEntity>();

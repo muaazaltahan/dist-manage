@@ -10,7 +10,7 @@ namespace dist_manage.DB
     {
         public int Id { get; set; } // Primary Key
         public int ProgramsId { get; set; } // Foreign Key to Program
-        public int CardsId { get; set; } // Foreign Key to Card
+        public string CardsId { get; set; } // Foreign Key to Card
         public static implicit operator Link_Prog_CardDB(Link_Prog_Card db)
         {
             return new Link_Prog_CardDB { Id = db.Id, ProgramsId = db.ProgramsId, CardsId = db.CardsId };
@@ -23,7 +23,7 @@ namespace dist_manage.DB
         public ProgramsDB Programs { get; set; }
         public int ProgramsId { get; set; } // Foreign Key to Program
         public CardsDB Cards { get; set; }
-        public int CardsId { get; set; } // Foreign Key to Card
+        public string CardsId { get; set; } // Foreign Key to Card
 
     }
 

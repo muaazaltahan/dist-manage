@@ -20,8 +20,8 @@ namespace dist_manage.Models.SqlServerEF
         {
             this.context = context;
             configuration = config;
-            _pepper = configuration["Secrets:pepper"];
-            _jwt = configuration["Secrets:jwt"];
+            _pepper = "fnwvo524jnljkl089sa_df";
+            _jwt = "vas23doif54iw35aeoptghysdavas23doif54iw35aeoptghysda";
         }
 
         public async Task<LoginResCmd> RegisterAdmin(RegisterUserReqCmd cmd)

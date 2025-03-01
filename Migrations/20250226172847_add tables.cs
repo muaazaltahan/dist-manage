@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace dist_manage.Migrations
 {
-    public partial class initialdatabase : Migration
+    public partial class addtables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,15 +61,20 @@ namespace dist_manage.Migrations
                 name: "CardsDB",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Sectionid = table.Column<int>(type: "int", nullable: false),
+                    Sectionid = table.Column<int>(type: "int", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Members = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FormId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FamilyId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FatherStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BlueCardId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasBlueCard = table.Column<bool>(type: "bit", nullable: false),
+                    Verification = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,8 +83,7 @@ namespace dist_manage.Migrations
                         name: "FK_CardsDB_SectionsDB_Sectionid",
                         column: x => x.Sectionid,
                         principalTable: "SectionsDB",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -141,7 +145,7 @@ namespace dist_manage.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProgramsId = table.Column<int>(type: "int", nullable: false),
-                    CardsId = table.Column<int>(type: "int", nullable: false)
+                    CardsId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -209,13 +213,13 @@ namespace dist_manage.Migrations
                         column: x => x.Link_Prog_CardId,
                         principalTable: "Link_Prog_CardDB",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RequestDB_UsersDB_AdminId",
                         column: x => x.AdminId,
                         principalTable: "UsersDB",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RequestDB_UsersDB_UsersId",
                         column: x => x.UsersId,

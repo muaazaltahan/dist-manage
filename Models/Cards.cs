@@ -1,8 +1,10 @@
-﻿namespace dist_manage.DB
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace dist_manage.DB
 {
     public class Cards
     {
-        public int? Id { get; set; } // Primary Key
+        public string Id { get; set; } // Primary Key
         public string Name { get; set; }
         public string Phone { get; set; }
         public int Sectionid { get; set; } // Foreign Key to Section
@@ -39,7 +41,7 @@
     }
     public class CardsDB
     {
-        public int? Id { get; set; } // Primary Key
+        [Key] public string Id { get; set; } // Primary Key
         public string Name { get; set; }
         public string Phone { get; set; }
 

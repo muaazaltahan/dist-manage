@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections.Generic;
+using dist_manage.Models.SqlServerEF;
 
 namespace dist_manage.Controllers
 {
@@ -12,18 +13,22 @@ namespace dist_manage.Controllers
     [ApiController]
     public class CardsController : ControllerBase
     {
-        private readonly IDataHelper<CardsDB> dataHelper;
+        private readonly CardsEntity dataHelper;
+        private readonly IDataHelper<SectionsDB> dataHelperSectionsDB;
 
         public CardsController(
-            IDataHelper<CardsDB> dataHelper)
+            CardsEntity dataHelper, IDataHelper<SectionsDB> dataHelperSectionsDB)
         {
             this.dataHelper = dataHelper;
+            this.dataHelperSectionsDB = dataHelperSectionsDB;
+
         }
         //GET : CardsController
         [Authorize("User"), HttpGet]
         public IActionResult Index()
         {
-            var data = dataHelper.GetAllData();
+            var data = dataHelper.GetAllData()
+                    .Join(dataHelperSectionsDB.GetAllData(), CardsDB => CardsDB.Sectionid, SectionsDB => SectionsDB.Id, (CardsDB, SectionsDB) => new { CardsDB = CardsDB, SectionsDB = SectionsDB });
             return Ok(data);
         }
 
@@ -53,7 +58,7 @@ namespace dist_manage.Controllers
         }
         // GET: CardsController/5
         [HttpGet("{id}")]
-        public ActionResult Find(int id)
+        public ActionResult Find(string id)
         {
             try
             {
@@ -64,7 +69,7 @@ namespace dist_manage.Controllers
         // POST: CardsController/Edit/5
         [Authorize(Policy = "AdminOnly"), HttpPut("Edit/{id}")]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Cards collection)
+        public ActionResult Edit(string id, Cards collection)
         {
             try
             {
@@ -87,7 +92,7 @@ namespace dist_manage.Controllers
         // Delete: CardsController/Delete/5
         [Authorize(Policy = "AdminOnly"), HttpDelete("Delete/{id}")]
         //[ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Cards collection)
+        public ActionResult Delete(string id, Cards collection)
         {
             try
             {

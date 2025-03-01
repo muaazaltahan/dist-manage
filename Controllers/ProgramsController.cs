@@ -23,7 +23,7 @@ namespace dist_manage.Controllers
             this.linkDataHelper = linkDataHelper;
         }
 
-        [Authorize(Policy = "AdminOnly")]
+        [Authorize]
         [HttpGet("program-cards/{programId}")]
         public ActionResult<IEnumerable<CardsDB>> GetProgramCards([FromRoute] int programId)
         {
@@ -36,9 +36,9 @@ namespace dist_manage.Controllers
             }
         }
 
-        [Authorize(Policy = "AdminOnly")]
+        [Authorize]
         [HttpGet("program-card-link/{programId}/{cardId}")]
-        public ActionResult<Link_Prog_Card> GetProgramCardLink([FromRoute] int programId, [FromRoute] int cardId)
+        public ActionResult<Link_Prog_Card> GetProgramCardLink([FromRoute] int programId, [FromRoute] string cardId)
         {
             try
             {
@@ -52,14 +52,14 @@ namespace dist_manage.Controllers
         }
 
         //GET : ProgramsController
-        [Authorize("User"), HttpGet]
+        [Authorize, HttpGet]
         public IActionResult Index()
         {
             var data = dataHelper.GetAllData();
             return Ok(data);
         }
 
-        [Authorize("User"), HttpGet("{id}")]
+        [Authorize, HttpGet("{id}")]
         public IActionResult Find(int id)
         {
             var data = dataHelper.Find(id);

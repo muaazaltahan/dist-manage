@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections.Generic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using dist_manage.Models.SqlServerEF;
 
 namespace dist_manage.Controllers
 {
@@ -14,17 +15,21 @@ namespace dist_manage.Controllers
     public class QueryController : ControllerBase
     {
         private readonly IDataHelper<LogsDB> dataHelper;
-        private readonly IDataHelper<CardsDB> dataHelperCard;
+        private readonly CardsEntity dataHelperCard;
         private readonly IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_CardDB;
+        private readonly IDataHelper<SectionsDB> dataHelperSectionsDB;
 
         public QueryController(
             IDataHelper<LogsDB> dataHelper,
-            IDataHelper<CardsDB> dataHelperCardsDB,
-            IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_CardDB)
+            CardsEntity dataHelperCardsDB,
+            IDataHelper<Link_Prog_CardDB> dataHelperLink_Prog_CardDB,
+            IDataHelper<SectionsDB> dataHelperSectionsDB)
         {
             this.dataHelper = dataHelper;
             this.dataHelperCard = dataHelperCardsDB;
             this.dataHelperLink_Prog_CardDB = dataHelperLink_Prog_CardDB;
+            this.dataHelperSectionsDB = dataHelperSectionsDB;
+
         }
         //GET : CardsController
         [HttpGet]
@@ -35,12 +40,12 @@ namespace dist_manage.Controllers
         }
 
         [HttpPost("Query")]
-
         public ActionResult Query(QueryTable collection)
         {
             try
             {
-                var Result = dataHelperCard.GetAllData();
+                var Result = dataHelperCard.GetAllData()
+                    .Join(dataHelperSectionsDB.GetAllData(), CardsDB => CardsDB.Sectionid, SectionsDB => SectionsDB.Id,(CardsDB,SectionsDB)=> new { CardsDB = CardsDB , SectionsDB = SectionsDB});
                 var query = dataHelper.GetAllData()
                         .Join(dataHelperLink_Prog_CardDB.GetAllData(), LogsDB => LogsDB.Link_Prog_CardId, Link_Prog_CardDB => Link_Prog_CardDB.Id, (LogsDB, Link_Prog_CardDB) => new { LogsDB = LogsDB, Link_Prog_CardDB = Link_Prog_CardDB })
                               .Join(dataHelperCard.GetAllData(), temp => temp.Link_Prog_CardDB.CardsId, CardsDB => CardsDB.Id, (temp, CardsDB) => new { temp.LogsDB, temp.Link_Prog_CardDB, CardsDB = CardsDB })
@@ -56,19 +61,20 @@ namespace dist_manage.Controllers
                 }
                 if (collection.StartDate != null)
                 {
-                    query = query.Where(x => x.LogsDB.LogDate.Date == collection.StartDate.Date);
+                    query = query.Where(x => x.LogsDB.LogDate.Date >= collection.StartDate.Date && x.LogsDB.LogDate.Date <= collection.EndDate.Date);
                 }
                 if (collection.Status == false)
                 {
-                    var alldata = dataHelperCard.GetAllData().Select(x => x.Id);
+                    var alldata = dataHelperCard.GetAllData();
                     var nodata = query.Select(x => x.CardsDB.Id);
-                    var data = alldata.Except(nodata).ToList();
-                    Result = Result.Where(x => data.Contains(x.Id)).ToList();
+                    // var data = alldata.Except(nodata).ToList();
+                    var data = alldata.Where(x => !nodata.Contains(x.Id)).Select(x=>x.Id);
+                     Result = Result.Where(x => data.Contains(x.CardsDB.Id)).ToList();
                 }
                 else
                 {
                     var data = query.Select(x => x.CardsDB.Id);
-                    Result = Result.Where(x => data.Contains(x.Id)).ToList();
+                    Result = Result.Where(x => data.Contains(x.CardsDB.Id)).ToList();
                 }
                 return Ok(Result);
             }

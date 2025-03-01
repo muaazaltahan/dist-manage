@@ -11,7 +11,7 @@ namespace dist_manage.DB
         public int? Id { get; set; } // Primary Key
 
         public int UsersId { get; set; } // Foreign Key to User
-        public int CardId { get; set; }
+        public string CardId { get; set; }
         public DateTime LogDate { get; set; }
         public string Notes { get; set; }
 
